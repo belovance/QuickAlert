@@ -1,9 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:vector_math/vector_math.dart' as math;
 
+/// Define Animation Type
 class Animate {
+  /// scale Animation
   static Transform scale({
+    /// child
     required Widget child,
+
+    /// animation
     required Animation<double> animation,
   }) {
     return Transform.scale(
@@ -15,8 +20,12 @@ class Animate {
     );
   }
 
+  /// rotate Animation
   static Transform rotate({
+    /// child
     required Widget child,
+
+    /// animation
     required Animation<double> animation,
   }) {
     return Transform.rotate(
@@ -28,8 +37,12 @@ class Animate {
     );
   }
 
+  /// slideInDown Animation
   static Transform slideInDown({
+    /// child
     required Widget child,
+
+    /// animation
     required Animation<double> animation,
   }) {
     final curvedValue = Curves.easeInOutBack.transform(animation.value) - 1.0;
@@ -42,8 +55,12 @@ class Animate {
     );
   }
 
+  /// slideInUp Animation
   static Transform slideInUp({
+    /// child
     required Widget child,
+
+    /// animation
     required Animation<double> animation,
   }) {
     final curvedValue = Curves.easeInOutBack.transform(animation.value) - 1.0;
@@ -56,8 +73,12 @@ class Animate {
     );
   }
 
+  /// slideInLeft Animation
   static Transform slideInLeft({
+    /// child
     required Widget child,
+
+    /// animation
     required Animation<double> animation,
   }) {
     final curvedValue = Curves.easeInOutBack.transform(animation.value) - 1.0;
@@ -70,8 +91,12 @@ class Animate {
     );
   }
 
+  /// slideInRight Animation
   static Transform slideInRight({
+    /// child
     required Widget child,
+
+    /// animation
     required Animation animation,
   }) {
     final curvedValue = Curves.easeInOutBack.transform(animation.value) - 1.0;

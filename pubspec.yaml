@@ -1,8 +1,8 @@
 name: quickalert
-description: An instantly ready, full-featured alerts for development on any platform with flutter. Enabling you to complete projects and deploy quickly. With QuickAlert, you can display animated alert dialogs such as success, error, warning, confirm, loading or even a custom dialog.
+description: With QuickAlert, instantly display animated alert dialogs such as success, error, warning, confirm, loading or even a custom dialog.
 version: 0.0.1
-homepage: https://quickalert.belovance.com/
-repository: https://github.com/belovance/QuickAlert.git
+homepage: https://quickalert.belovance.com
+repository: https://github.com/belovance/QuickAlert
 
 false_secrets:
   - example/**

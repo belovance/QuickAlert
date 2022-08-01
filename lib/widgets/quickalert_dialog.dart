@@ -8,6 +8,7 @@ import 'package:quickalert/widgets/quickalert_container.dart';
 
 /// QuickAlert
 class QuickAlert {
+  /// Instantly display animated alert dialogs such as success, error, warning, confirm, loading or even a custom dialog.
   static Future show({
     /// BuildContext
     required BuildContext context,
