@@ -1,3 +1,8 @@
+## 0.0.2
+
+* ReadME updated
+* Documentation Comments Addeds
+
 ## 0.0.1
 
 * Initial Release
