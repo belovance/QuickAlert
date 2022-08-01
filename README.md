@@ -1,4 +1,4 @@
-<img src="screenshots/banner.png" alt="QuickAlert Banner" width="100%">
+<img src="https://raw.githubusercontent.com/belovance/QuickAlert/master/screenshots/banner.png" alt="QuickAlert Banner" width="100%">
 
 *An instantly ready, full-featured alerts for development on any platform with flutter. Enabling you to complete projects and deploy quickly. With **QuickAlert**, you can display animated alert dialogs such as success, error, warning, confirm, loading or even a custom dialog.*
 
@@ -28,7 +28,7 @@
 **And Many More...**
 
 <br>
-<img src="screenshots/demo.gif" alt="QuickAlert Demo" width="100%">
+<img src="https://raw.githubusercontent.com/belovance/QuickAlert/master/screenshots/demo.gif" alt="QuickAlert Demo" width="100%">
 <p align="center"><strong><em>QuickAlert Demo</em></strong></p>
 
 ## Getting Started 🔥
@@ -188,13 +188,13 @@ There is a detailed example project in the <code>example</code> folder. You can 
 Here are some screenshots of the **QuickAlert** Dialogs.
 
 <p align="center">
-<img src="screenshots/success.png" width="49%">
-<img src="screenshots/error.png" width="49%">
-<img src="screenshots/warning.png" width="49%">
-<img src="screenshots/info.png" width="49%">
-<img src="screenshots/confirm.png" width="49%">
-<img src="screenshots/custom.png" width="49%">
-<img src="screenshots/loading.png" width="49%">
+<img src="https://raw.githubusercontent.com/belovance/QuickAlert/master/screenshots/success.png" width="49%">
+<img src="https://raw.githubusercontent.com/belovance/QuickAlert/master/screenshots/error.png" width="49%">
+<img src="https://raw.githubusercontent.com/belovance/QuickAlert/master/screenshots/warning.png" width="49%">
+<img src="https://raw.githubusercontent.com/belovance/QuickAlert/master/screenshots/info.png" width="49%">
+<img src="https://raw.githubusercontent.com/belovance/QuickAlert/master/screenshots/confirm.png" width="49%">
+<img src="https://raw.githubusercontent.com/belovance/QuickAlert/master/screenshots/custom.png" width="49%">
+<img src="https://raw.githubusercontent.com/belovance/QuickAlert/master/screenshots/loading.png" width="49%">
 </p>
 
 ## QuickAlert Options 📖
