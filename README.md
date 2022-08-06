@@ -224,6 +224,22 @@ These are the options available in <code>QuickAlert</code> Class.
 
 <br>
 
+## Developed By 😃
+<a href="https://itsakashs.web.app/" target="_blank">
+<kbd><img src="https://itsakashs.web.app/img/beach-profile.jpg" alt="Akash S" height="75" width="75">
+</kbd>
+</a>
+
+> <p>
+<strong>Akash S</strong><br>
+<em>A computer science enthusiast with a passion for technology, travel, and design. I view computers and applications as a vehicle to inspire others to pursue their passions and enjoy the world around them. <a href="https://itsakashs.web.app/" target="_blank">
+Read More
+</a></em>
+</p>
+
+<a href="https://www.buymeacoffee.com/itsakashs22" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+<br>
+
 ## Brought To You By 😇
 <a href="https://belovance.com"><img src="https://belovance.com/img/NameLogo3.png" width="20%" /></a>
 > Belovance's products and services portfolio touches almost all people on a daily basis, across economic and social spectrums. We are now focussed on building platforms that will herald the Fourth Industrial Revolution and will create opportunities and avenues for the entire world and all its population to realise their true potential.
