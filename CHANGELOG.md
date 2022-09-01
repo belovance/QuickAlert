@@ -1,3 +1,11 @@
+## 1.0.0
+
+* Requested Updates
+* Background Color Added
+* Title Color Added
+* Text Color Added
+* Barrier Color Added
+
 ## 0.0.2
 
 * ReadME updated

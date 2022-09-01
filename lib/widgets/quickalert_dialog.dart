@@ -52,6 +52,18 @@ class QuickAlert {
     /// TextStyle for cancel button
     TextStyle? cancelBtnTextStyle,
 
+    /// Backgroung Color for dialog
+    Color backgroundColor = Colors.white,
+
+    /// Color of title
+    Color titleColor = Colors.black,
+
+    /// Color of text
+    Color textColor = Colors.black,
+
+    /// Barrier Color of dialog
+    Color? barrierColor,
+
     /// Determines if cancel button is shown or not
     bool showCancelBtn = false,
 
@@ -87,6 +99,9 @@ class QuickAlert {
       confirmBtnColor: confirmBtnColor,
       confirmBtnTextStyle: confirmBtnTextStyle,
       cancelBtnTextStyle: cancelBtnTextStyle,
+      backgroundColor: backgroundColor,
+      titleColor: titleColor,
+      textColor: textColor,
       showCancelBtn: showCancelBtn,
       borderRadius: borderRadius,
       customAsset: customAsset,
@@ -104,7 +119,7 @@ class QuickAlert {
     );
 
     return showGeneralDialog(
-      barrierColor: Colors.black.withOpacity(0.5),
+      barrierColor: barrierColor ?? Colors.black.withOpacity(0.5),
       transitionBuilder: (context, anim1, __, widget) {
         switch (animType) {
           case QuickAlertAnimType.scale:

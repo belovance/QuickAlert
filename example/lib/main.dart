@@ -52,6 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
           type: QuickAlertType.error,
           title: 'Oops...',
           text: 'Sorry, something went wrong',
+          backgroundColor: Colors.black,
+          titleColor: Colors.white,
+          textColor: Colors.white,
         );
       },
       title: 'Error',
@@ -93,7 +96,15 @@ class _MyHomePageState extends State<MyHomePage> {
           text: 'Do you want to logout',
           confirmBtnText: 'Yes',
           cancelBtnText: 'No',
-          confirmBtnColor: Colors.green,
+          confirmBtnColor: Colors.white,
+          backgroundColor: Colors.black,
+          confirmBtnTextStyle: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+          barrierColor: Colors.white,
+          titleColor: Colors.white,
+          textColor: Colors.white,
         );
       },
       title: 'Confirm',

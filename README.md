@@ -218,6 +218,10 @@ These are the options available in <code>QuickAlert</code> Class.
 | animType| QuickAlertAnimType| Type of dialogue enter animation| QuickAlertAnimType.scale|
 | confirmBtnTextStyle | TextStyle | Confirm button text theme| TextStyle(color: Colors.white, fontWeight:FontWeight.w600,fontSize: 18.0)|
 | cancelBtnTextStyle | TextStyle | Cancel button text theme|TextStyle(color: Colors.grey, fontWeight:FontWeight.w600,fontSize: 18.0)|
+| backgroundColor | Color | Color of dialog background | Colors.white |
+| titleColor | Color | Color of title | Colors.black |
+| textColor | Color | Color of text | Colors.black |
+| barrierColor | Color | Color of Barrier | Null |
 | customAsset| String | Asset path of your custom asset | Null |
 |autoCloseDuration|Duration|Determines how long the dialog stays open for before closing|Null|
 |width|double|Dialog width|MediaQuery.of(context).size.shortestSide|

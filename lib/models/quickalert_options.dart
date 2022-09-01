@@ -40,19 +40,28 @@ class QuickAlertOptions {
   /// TextStyle for confirm button
   TextStyle? confirmBtnTextStyle;
 
-  /// Determines if cancel button is shown or not
+  /// TextStyle for cancel button
   TextStyle? cancelBtnTextStyle;
 
-  /// Dialog Border Radius
+  /// Backgroung Color for dialog
+  Color? backgroundColor;
+
+  /// Color of title
+  Color? titleColor;
+
+  /// Color of text
+  Color? textColor;
+
+  /// Determines if cancel button is shown or not
   bool? showCancelBtn;
 
-  /// Asset path of your Image file
+  /// Dialog Border Radius
   double? borderRadius;
 
-  /// Width of the dialog
+  /// Asset path of your Image file
   String? customAsset;
 
-  /// Determines how long the dialog stays open for before closing, [default] is null. When it is null, it won't autoclose
+  /// Width of the dialog
   double? width;
 
   /// Alert Options
@@ -93,19 +102,28 @@ class QuickAlertOptions {
     /// TextStyle for confirm button
     this.confirmBtnTextStyle,
 
-    /// Determines if cancel button is shown or not
+    /// TextStyle for cancel button
     this.cancelBtnTextStyle,
 
-    /// Dialog Border Radius
+    /// Backgroung Color for dialog
+    this.backgroundColor,
+
+    /// Color of title
+    this.titleColor,
+
+    /// Color of text
+    this.textColor,
+
+    /// Determines if cancel button is shown or not
     this.showCancelBtn,
 
-    /// Asset path of your Image file
+    /// Dialog Border Radius
     this.borderRadius,
 
-    /// Width of the dialog
+    /// Asset path of your Image file
     this.customAsset,
 
-    /// Determines how long the dialog stays open for before closing, [default] is null. When it is null, it won't autoclose
+    /// Width of the dialog
     this.width,
   });
 }

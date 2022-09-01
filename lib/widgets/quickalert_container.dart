@@ -38,7 +38,12 @@ class QuickAlertContainer extends StatelessWidget {
       ),
     );
 
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        color: options!.backgroundColor,
+        borderRadius: BorderRadius.circular(options!.borderRadius!),
+      ),
+      clipBehavior: Clip.antiAlias,
       width: options!.width ?? MediaQuery.of(context).size.shortestSide,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -81,11 +86,7 @@ class QuickAlertContainer extends StatelessWidget {
       height: 150,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: Colors.grey.shade50,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(options!.borderRadius!),
-          topRight: Radius.circular(options!.borderRadius!),
-        ),
+        color: Colors.white.withOpacity(0.5),
       ),
       child: Image.asset(
         anim ?? "",
@@ -100,7 +101,9 @@ class QuickAlertContainer extends StatelessWidget {
       visible: title != null,
       child: Text(
         '$title',
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme.of(context).textTheme.headline6!.copyWith(
+              color: options!.titleColor,
+            ),
       ),
     );
   }
@@ -118,6 +121,9 @@ class QuickAlertContainer extends StatelessWidget {
       return Text(
         text ?? '',
         textAlign: TextAlign.center,
+        style: TextStyle(
+          color: options!.textColor,
+        ),
       );
     }
   }
