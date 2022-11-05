@@ -113,8 +113,10 @@ class QuickAlert {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
-      content: QuickAlertContainer(
-        options: options,
+      content: SingleChildScrollView(
+        child: QuickAlertContainer(
+          options: options,
+        ),
       ),
     );
 
