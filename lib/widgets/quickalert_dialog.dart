@@ -28,7 +28,7 @@ class QuickAlert {
     /// Animation type  [scale, rotate, slideInDown, slideInUp, slideInLeft, slideInRight]
     QuickAlertAnimType animType = QuickAlertAnimType.scale,
 
-    /// Barrier Dissmisable
+    /// Barrier Dismissible
     bool barrierDismissible = true,
 
     /// Triggered when confirm button is tapped
@@ -52,7 +52,7 @@ class QuickAlert {
     /// TextStyle for cancel button
     TextStyle? cancelBtnTextStyle,
 
-    /// Backgroung Color for dialog
+    /// Background Color for dialog
     Color backgroundColor = Colors.white,
 
     /// Color of title
@@ -76,7 +76,7 @@ class QuickAlert {
     /// Width of the dialog
     double? width,
 
-    /// Determines how long the dialog stays open for before closing, [default] is null. When it is null, it won't autoclose
+    /// Determines how long the dialog stays open for before closing, [default] is null. When it is null, it won't auto close
     Duration? autoCloseDuration,
   }) {
     if (autoCloseDuration != null) {

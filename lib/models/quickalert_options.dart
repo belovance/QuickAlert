@@ -19,7 +19,7 @@ class QuickAlertOptions {
   /// Animation type  [scale, rotate, slideInDown, slideInUp, slideInLeft, slideInRight]
   QuickAlertAnimType? animType;
 
-  /// Barrier Dissmisable
+  /// Barrier dismissible
   bool? barrierDismissible = false;
 
   /// Triggered when confirm button is tapped
