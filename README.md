@@ -19,8 +19,8 @@
 **Change Animation**
 > Set your favorite animation by choosing from scale, rotate, slideInDown, slideInUp, slideInLeft, slideInRight.
 
-**Set Autoclose**
-> Autoclose the alert by setiing autoclose duration.
+**Set Auto close**
+> Auto close the alert by setting auto close duration.
 
 **Set Overlay Tap to Dismiss**
 > Control the alert's Barrier Dismissible Property by setting barrierDismissible to true or false.
@@ -225,25 +225,3 @@ These are the options available in <code>QuickAlert</code> Class.
 | customAsset| String | Asset path of your custom asset | Null |
 |autoCloseDuration|Duration|Determines how long the dialog stays open for before closing|Null|
 |width|double|Dialog width|MediaQuery.of(context).size.shortestSide|
-
-<br>
-
-## Developed By 😃
-<a href="https://itsakashs.web.app/" target="_blank">
-<kbd><img src="https://itsakashs.web.app/img/beach-profile.jpg" alt="Akash S" height="75" width="75">
-</kbd>
-</a>
-
-> <p>
-<strong>Akash S</strong><br>
-<em>A computer science enthusiast with a passion for technology, travel, and design. I view computers and applications as a vehicle to inspire others to pursue their passions and enjoy the world around them. <a href="https://itsakashs.web.app/" target="_blank">
-Read More
-</a></em>
-</p>
-
-<a href="https://www.buymeacoffee.com/itsakashs22" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
-<br>
-
-## Brought To You By 😇
-<a href="https://belovance.com"><img src="https://belovance.com/img/NameLogo3.png" width="20%" /></a>
-> Belovance's products and services portfolio touches almost all people on a daily basis, across economic and social spectrums. We are now focussed on building platforms that will herald the Fourth Industrial Revolution and will create opportunities and avenues for the entire world and all its population to realise their true potential.

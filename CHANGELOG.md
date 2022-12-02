@@ -1,3 +1,8 @@
+## 1.0.1
+
+* ReadME updated
+* Documentation Typos Corrected
+
 ## 1.0.0
 
 * Requested Updates
@@ -9,7 +14,7 @@
 ## 0.0.2
 
 * ReadME updated
-* Documentation Comments Addeds
+* Documentation Comments Added
 
 ## 0.0.1
 
