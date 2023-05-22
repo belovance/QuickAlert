@@ -33,7 +33,9 @@ class QuickAlertButtons extends StatelessWidget {
       context: context,
       isOkayBtn: true,
       text: options!.confirmBtnText!,
-      onTap: options!.onConfirmBtnTap ?? () => Navigator.pop(context),
+      onTap: options!.onConfirmBtnTap ?? (){ 
+        options!.timer?.cancel();
+        Navigator.pop(context);}
     );
 
     if (showCancelBtn) {
