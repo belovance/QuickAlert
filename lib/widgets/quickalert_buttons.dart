@@ -33,10 +33,10 @@ class QuickAlertButtons extends StatelessWidget {
         context: context,
         isOkayBtn: true,
         text: options!.confirmBtnText!,
-        onTap: options!.onConfirmBtnTap ??
+        onTap: 
             () {
               options!.timer?.cancel();
-              Navigator.pop(context);
+               options!.onConfirmBtnTap != null ?  options!.onConfirmBtnTap!() :Navigator.pop(context);
             });
 
     if (showCancelBtn) {
@@ -55,10 +55,10 @@ class QuickAlertButtons extends StatelessWidget {
         context: context,
         isOkayBtn: false,
         text: options!.cancelBtnText!,
-        onTap: options!.onCancelBtnTap ??
+        onTap:
             () {
               options!.timer?.cancel();
-              Navigator.pop(context);
+              options!.onCancelBtnTap != null ?  options!.onCancelBtnTap!(): Navigator.pop(context);
             });
 
     if (showCancelBtn) {

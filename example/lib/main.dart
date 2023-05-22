@@ -91,6 +91,9 @@ class _MyHomePageState extends State<MyHomePage> {
     final confirmAlert = buildButton(
       onTap: () {
         QuickAlert.show(
+          onCancelBtnTap: () {
+            Navigator.pop(context);
+          },
           context: context,
           type: QuickAlertType.confirm,
           text: 'Do you want to logout',
