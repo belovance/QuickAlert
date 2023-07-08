@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:quickalert/models/quickalert_animtype.dart';
 import 'package:quickalert/models/quickalert_type.dart';
@@ -63,12 +65,12 @@ class QuickAlertOptions {
 
   /// Width of the dialog
   double? width;
-
+ 
+ Timer? timer;
   /// Alert Options
   QuickAlertOptions({
     /// Title of the dialog
     this.title,
-
     /// Text of the dialog
     this.text,
 
@@ -125,5 +127,8 @@ class QuickAlertOptions {
 
     /// Width of the dialog
     this.width,
+
+    //timer for dismissing dialog (Ok button)
+    this.timer,
   });
 }

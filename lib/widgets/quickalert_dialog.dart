@@ -79,13 +79,16 @@ class QuickAlert {
     /// Determines how long the dialog stays open for before closing, [default] is null. When it is null, it won't auto close
     Duration? autoCloseDuration,
   }) {
+    var timer;
     if (autoCloseDuration != null) {
-      Future.delayed(autoCloseDuration, () {
+      timer =
+      Timer(autoCloseDuration, () {
         Navigator.of(context, rootNavigator: true).pop();
       });
     }
 
     final options = QuickAlertOptions(
+      timer:timer,
       title: title,
       text: text,
       widget: widget,

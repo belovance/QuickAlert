@@ -30,11 +30,14 @@ class QuickAlertButtons extends StatelessWidget {
         : options!.showCancelBtn!;
 
     final okayBtn = buildButton(
-      context: context,
-      isOkayBtn: true,
-      text: options!.confirmBtnText!,
-      onTap: options!.onConfirmBtnTap ?? () => Navigator.pop(context),
-    );
+        context: context,
+        isOkayBtn: true,
+        text: options!.confirmBtnText!,
+        onTap: 
+            () {
+              options!.timer?.cancel();
+               options!.onConfirmBtnTap != null ?  options!.onConfirmBtnTap!() :Navigator.pop(context);
+            });
 
     if (showCancelBtn) {
       return Expanded(child: okayBtn);
@@ -49,11 +52,14 @@ class QuickAlertButtons extends StatelessWidget {
         : options!.showCancelBtn!;
 
     final cancelBtn = buildButton(
-      context: context,
-      isOkayBtn: false,
-      text: options!.cancelBtnText!,
-      onTap: options!.onCancelBtnTap ?? () => Navigator.pop(context),
-    );
+        context: context,
+        isOkayBtn: false,
+        text: options!.cancelBtnText!,
+        onTap:
+            () {
+              options!.timer?.cancel();
+              options!.onCancelBtnTap != null ?  options!.onCancelBtnTap!(): Navigator.pop(context);
+            });
 
     if (showCancelBtn) {
       return Expanded(child: cancelBtn);
