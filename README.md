@@ -36,7 +36,7 @@
 Start by adding the library as a dependency to your project.
 ```yaml
 dependencies:
-  QuickAlert: <latest version>
+  quickalert: <latest version>
 ```
 Run the command get the dependency
 ```command
