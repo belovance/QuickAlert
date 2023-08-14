@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/belovance/QuickAlert/master/screenshots/banner.png?raw=true" alt="QuickAlert Banner" width="100%">
+
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge
