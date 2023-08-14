@@ -25,6 +25,9 @@ class QuickAlertButtons extends StatelessWidget {
   }
 
   Widget okayBtn(context) {
+    if (!options!.showConfirmBtn!) {
+      return const SizedBox();
+    }
     final showCancelBtn = options!.type == QuickAlertType.confirm
         ? true
         : options!.showCancelBtn!;
@@ -33,11 +36,12 @@ class QuickAlertButtons extends StatelessWidget {
         context: context,
         isOkayBtn: true,
         text: options!.confirmBtnText!,
-        onTap: 
-            () {
-              options!.timer?.cancel();
-               options!.onConfirmBtnTap != null ?  options!.onConfirmBtnTap!() :Navigator.pop(context);
-            });
+        onTap: () {
+          options!.timer?.cancel();
+          options!.onConfirmBtnTap != null
+              ? options!.onConfirmBtnTap!()
+              : Navigator.pop(context);
+        });
 
     if (showCancelBtn) {
       return Expanded(child: okayBtn);
@@ -55,16 +59,17 @@ class QuickAlertButtons extends StatelessWidget {
         context: context,
         isOkayBtn: false,
         text: options!.cancelBtnText!,
-        onTap:
-            () {
-              options!.timer?.cancel();
-              options!.onCancelBtnTap != null ?  options!.onCancelBtnTap!(): Navigator.pop(context);
-            });
+        onTap: () {
+          options!.timer?.cancel();
+          options!.onCancelBtnTap != null
+              ? options!.onCancelBtnTap!()
+              : Navigator.pop(context);
+        });
 
     if (showCancelBtn) {
       return Expanded(child: cancelBtn);
     } else {
-      return Container();
+      return const SizedBox();
     }
   }
 
