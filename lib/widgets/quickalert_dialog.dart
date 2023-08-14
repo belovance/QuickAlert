@@ -67,6 +67,9 @@ class QuickAlert {
     /// Determines if cancel button is shown or not
     bool showCancelBtn = false,
 
+    /// Determines if confirm button is shown or not
+    bool showConfirmBtn = true,
+
     /// Dialog Border Radius
     double borderRadius = 15.0,
 
@@ -81,14 +84,13 @@ class QuickAlert {
   }) {
     var timer;
     if (autoCloseDuration != null) {
-      timer =
-      Timer(autoCloseDuration, () {
+      timer = Timer(autoCloseDuration, () {
         Navigator.of(context, rootNavigator: true).pop();
       });
     }
 
     final options = QuickAlertOptions(
-      timer:timer,
+      timer: timer,
       title: title,
       text: text,
       widget: widget,
@@ -106,6 +108,7 @@ class QuickAlert {
       titleColor: titleColor,
       textColor: textColor,
       showCancelBtn: showCancelBtn,
+      showConfirmBtn: showConfirmBtn,
       borderRadius: borderRadius,
       customAsset: customAsset,
       width: width,

@@ -38,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
           type: QuickAlertType.success,
           text: 'Transaction Completed Successfully!',
           autoCloseDuration: const Duration(seconds: 2),
+          showConfirmBtn: false,
         );
       },
       title: 'Success',
