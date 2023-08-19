@@ -81,6 +81,9 @@ class QuickAlert {
 
     /// Determines how long the dialog stays open for before closing, [default] is null. When it is null, it won't auto close
     Duration? autoCloseDuration,
+
+    /// Disable Back Button
+    bool disableBackBtn = false,
   }) {
     var timer;
     if (autoCloseDuration != null) {
@@ -113,8 +116,8 @@ class QuickAlert {
       customAsset: customAsset,
       width: width,
     );
-
-    final child = AlertDialog(
+    
+    Widget child = AlertDialog(
       contentPadding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
@@ -123,6 +126,13 @@ class QuickAlert {
         options: options,
       ),
     );
+
+    if (disableBackBtn) {
+      child = WillPopScope(
+        onWillPop: () => Future.value(false),
+        child: child,
+      );
+    }
 
     return showGeneralDialog(
       barrierColor: barrierColor ?? Colors.black.withOpacity(0.5),
