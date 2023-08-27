@@ -1,3 +1,8 @@
+## 1.0.2
+
+* Addition of more options to provide more control over the dialog
+* Documentation Updated
+
 ## 1.0.1
 
 * ReadME updated

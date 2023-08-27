@@ -36,7 +36,7 @@
 Start by adding the library as a dependency to your project.
 ```yaml
 dependencies:
-  QuickAlert: <latest version>
+  quickalert: <latest version>
 ```
 Run the command get the dependency
 ```command
@@ -204,24 +204,30 @@ These are the options available in <code>QuickAlert</code> Class.
 | Attribute        | Data type           | Description                                                                                                                                                   |            Default Value            |
 |:----------------------|:-------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------:|
 | context| BuildContext | @required BuildContext | N/A   |
-| type | QuickAlertType | @required - Type of alert dialog, ex: QuickAlertType.success for success dialogs | Null |
+| type | QuickAlertType | @required - Type of alert dialog, ex: QuickAlertType.success for success dialogs | NULL |
 |title| String | Set a custom title for dialog | Based on the QuickAlertType selected |                 
-|text| String | Set the description text of the dialog. | Null |
-| widget| Widget | Set custom widget of the dialog. | Null |
+|text| String | Set the description text of the dialog. | NULL |
+| widget| Widget | Set custom widget of the dialog. | NULL |
 | confirmBtnText | String | Text of confirm button | 'Okay' |                 |
-| confirmBtnTap| Function | Function that handle click of confirm button | () => Navigator.pop(context)|
+| onConfirmBtnTap| Function | Function that handle click of confirm button | () => Navigator.pop(context)|
 | confirmBtnColor| Color | Color of confirm Button | Colors.blue |
 | showCancelBtn | bool| Determines if cancel button is shown or not | false |
+| showConfirmBtn | bool| Determines if confirm button is shown or not | true |
 | cancelBtnText| String | Text of cancel button| 'Cancel' |
-| cancelBtnTap| Function| Function that handle click of cancel button|() => Navigator.pop(context) |
+| onCancelBtnTap| Function| Function that handle click of cancel button|() => Navigator.pop(context) |
 | barrierDismissible| bool| Dismiss dialog on touch overlay| true |                 
 | animType| QuickAlertAnimType| Type of dialogue enter animation| QuickAlertAnimType.scale|
 | confirmBtnTextStyle | TextStyle | Confirm button text theme| TextStyle(color: Colors.white, fontWeight:FontWeight.w600,fontSize: 18.0)|
 | cancelBtnTextStyle | TextStyle | Cancel button text theme|TextStyle(color: Colors.grey, fontWeight:FontWeight.w600,fontSize: 18.0)|
 | backgroundColor | Color | Color of dialog background | Colors.white |
+| headerBackgroundColor | Color | Background Color of dialog Header Background | Colors.white |
 | titleColor | Color | Color of title | Colors.black |
 | textColor | Color | Color of text | Colors.black |
-| barrierColor | Color | Color of Barrier | Null |
-| customAsset| String | Asset path of your custom asset | Null |
-|autoCloseDuration|Duration|Determines how long the dialog stays open for before closing|Null|
+| barrierColor | Color | Color of Barrier | NULL |
+| customAsset| String | Asset path of your custom asset | NULL |
+|autoCloseDuration|Duration|Determines how long the dialog stays open for before closing|NULL|
 |width|double|Dialog width|MediaQuery.of(context).size.shortestSide|
+|titleAlignment|TextAlign|Title Alignment of the dialog| NULL |
+|textAlignment|TextAlign|Text Alignment of the dialog| NULL |
+|borderRadius|double|Dialog's border radius|15.0|
+|disableBackBtn|bool|Determines if the dialog should be closed when back button is pressed|false|
