@@ -19,6 +19,12 @@ class QuickAlert {
     /// Text of the dialog
     String? text,
 
+    /// TitleAlignment of the dialog
+    TextAlign? titleAlignment,
+
+    /// TextAlignment of the dialog
+    TextAlign? textAlignment,
+
     /// Custom Widget of the dialog
     Widget? widget,
 
@@ -55,6 +61,9 @@ class QuickAlert {
     /// Background Color for dialog
     Color backgroundColor = Colors.white,
 
+    /// Header Background Color for dialog
+    Color headerBackgroundColor = Colors.white,
+
     /// Color of title
     Color titleColor = Colors.black,
 
@@ -85,7 +94,7 @@ class QuickAlert {
     /// Disable Back Button
     bool disableBackBtn = false,
   }) {
-    var timer;
+    Timer? timer;
     if (autoCloseDuration != null) {
       timer = Timer(autoCloseDuration, () {
         Navigator.of(context, rootNavigator: true).pop();
@@ -96,6 +105,8 @@ class QuickAlert {
       timer: timer,
       title: title,
       text: text,
+      titleAlignment: titleAlignment,
+      textAlignment: textAlignment,
       widget: widget,
       type: type,
       animType: animType,
@@ -108,6 +119,7 @@ class QuickAlert {
       confirmBtnTextStyle: confirmBtnTextStyle,
       cancelBtnTextStyle: cancelBtnTextStyle,
       backgroundColor: backgroundColor,
+      headerBackgroundColor: headerBackgroundColor,
       titleColor: titleColor,
       textColor: textColor,
       showCancelBtn: showCancelBtn,

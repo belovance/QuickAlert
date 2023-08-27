@@ -12,6 +12,12 @@ class QuickAlertOptions {
   /// Text of the dialog
   String? text;
 
+  /// TitleAlignment of the dialog
+  TextAlign? titleAlignment;
+
+  /// TextAlignment of the dialog
+  TextAlign? textAlignment;
+
   /// Custom Widget of the dialog
   Widget? widget;
 
@@ -48,6 +54,9 @@ class QuickAlertOptions {
   /// Backgroung Color for dialog
   Color? backgroundColor;
 
+  /// Header Backgroung Color for dialog
+  Color? headerBackgroundColor;
+
   /// Color of title
   Color? titleColor;
 
@@ -79,6 +88,12 @@ class QuickAlertOptions {
 
     /// Text of the dialog
     this.text,
+
+    /// TitleAlignment of the dialog
+    this.titleAlignment,
+
+    /// TextAlignment of the dialog
+    this.textAlignment,
 
     /// Custom Widget of the dialog
     this.widget,
@@ -115,6 +130,9 @@ class QuickAlertOptions {
 
     /// Backgroung Color for dialog
     this.backgroundColor,
+
+    /// Header Backgroung Color for dialog
+    this.headerBackgroundColor,
 
     /// Color of title
     this.titleColor,

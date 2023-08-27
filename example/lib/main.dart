@@ -98,10 +98,13 @@ class _MyHomePageState extends State<MyHomePage> {
           context: context,
           type: QuickAlertType.confirm,
           text: 'Do you want to logout',
+          titleAlignment: TextAlign.right,
+          textAlignment: TextAlign.right,
           confirmBtnText: 'Yes',
           cancelBtnText: 'No',
           confirmBtnColor: Colors.white,
           backgroundColor: Colors.black,
+          headerBackgroundColor: Colors.grey,
           confirmBtnTextStyle: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -161,12 +164,13 @@ class _MyHomePageState extends State<MyHomePage> {
               return;
             }
             Navigator.pop(context);
-            await Future.delayed(const Duration(milliseconds: 1000));
-            await QuickAlert.show(
-              context: context,
-              type: QuickAlertType.success,
-              text: "Phone number '$message' has been saved!.",
-            );
+            if (mounted) {
+              QuickAlert.show(
+                context: context,
+                type: QuickAlertType.success,
+                text: "Phone number '$message' has been saved!.",
+              );
+            }
           },
         );
       },

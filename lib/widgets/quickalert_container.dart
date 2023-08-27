@@ -23,6 +23,7 @@ class QuickAlertContainer extends StatelessWidget {
     final content = Container(
       padding: const EdgeInsets.all(20.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           title,
           const SizedBox(
@@ -86,7 +87,7 @@ class QuickAlertContainer extends StatelessWidget {
       height: 150,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.5),
+        color: options!.headerBackgroundColor,
       ),
       child: Image.asset(
         anim ?? "",
@@ -101,9 +102,12 @@ class QuickAlertContainer extends StatelessWidget {
       visible: title != null,
       child: Text(
         '$title',
-        style: Theme.of(context).textTheme.headline6!.copyWith(
-              color: options!.titleColor,
-            ),
+        textAlign: options!.titleAlignment ?? TextAlign.center,
+        style: TextStyle(
+          color: options!.titleColor,
+        ).merge(
+          Theme.of(context).textTheme.headlineSmall,
+        ),
       ),
     );
   }
@@ -120,7 +124,7 @@ class QuickAlertContainer extends StatelessWidget {
       }
       return Text(
         text ?? '',
-        textAlign: TextAlign.center,
+        textAlign: options!.textAlignment ?? TextAlign.center,
         style: TextStyle(
           color: options!.textColor,
         ),
