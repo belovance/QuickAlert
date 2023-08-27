@@ -117,22 +117,18 @@ class QuickAlert {
       width: width,
     );
     
-    Widget child = AlertDialog(
-      contentPadding: EdgeInsets.zero,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
-      ),
-      content: QuickAlertContainer(
-        options: options,
+    final child = WillPopScope(
+      onWillPop: () => Future.value(!disableBackBtn),
+      child: AlertDialog(
+        contentPadding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+        ),
+        content: QuickAlertContainer(
+          options: options,
+        ),
       ),
     );
-
-    if (disableBackBtn) {
-      child = WillPopScope(
-        onWillPop: () => Future.value(false),
-        child: child,
-      );
-    }
 
     return showGeneralDialog(
       barrierColor: barrierColor ?? Colors.black.withOpacity(0.5),
