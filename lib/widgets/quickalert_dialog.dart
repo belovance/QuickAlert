@@ -38,10 +38,10 @@ class QuickAlert {
     bool barrierDismissible = true,
 
     /// Triggered when confirm button is tapped
-    VoidCallback? onConfirmBtnTap,
+    void Function(BuildContext ctx)? onConfirmBtnTap,
 
     /// Triggered when cancel button is tapped
-    VoidCallback? onCancelBtnTap,
+    void Function(BuildContext ctx)? onCancelBtnTap,
 
     /// Confirmation button text
     String confirmBtnText = 'Okay',
@@ -128,7 +128,7 @@ class QuickAlert {
       customAsset: customAsset,
       width: width,
     );
-    
+
     final child = WillPopScope(
       onWillPop: () => Future.value(!disableBackBtn),
       child: AlertDialog(

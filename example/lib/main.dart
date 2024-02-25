@@ -92,8 +92,8 @@ class _MyHomePageState extends State<MyHomePage> {
     final confirmAlert = buildButton(
       onTap: () {
         QuickAlert.show(
-          onCancelBtnTap: () {
-            Navigator.pop(context);
+          onCancelBtnTap: (ctx) {
+            Navigator.pop(ctx);
           },
           context: context,
           type: QuickAlertType.confirm,
@@ -154,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
             keyboardType: TextInputType.phone,
             onChanged: (value) => message = value,
           ),
-          onConfirmBtnTap: () async {
+          onConfirmBtnTap: (ctx) async {
             if (message.length < 5) {
               await QuickAlert.show(
                 context: context,

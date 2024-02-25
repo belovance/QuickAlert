@@ -39,7 +39,7 @@ class QuickAlertButtons extends StatelessWidget {
         onTap: () {
           options!.timer?.cancel();
           options!.onConfirmBtnTap != null
-              ? options!.onConfirmBtnTap!()
+              ? options!.onConfirmBtnTap!.call(context)
               : Navigator.pop(context);
         });
 
@@ -62,7 +62,7 @@ class QuickAlertButtons extends StatelessWidget {
         onTap: () {
           options!.timer?.cancel();
           options!.onCancelBtnTap != null
-              ? options!.onCancelBtnTap!()
+              ? options!.onCancelBtnTap!.call(context)
               : Navigator.pop(context);
         });
 

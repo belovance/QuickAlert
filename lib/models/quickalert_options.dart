@@ -31,10 +31,10 @@ class QuickAlertOptions {
   bool? barrierDismissible = false;
 
   /// Triggered when confirm button is tapped
-  VoidCallback? onConfirmBtnTap;
+  void Function(BuildContext ctx)? onConfirmBtnTap;
 
   /// Triggered when cancel button is tapped
-  VoidCallback? onCancelBtnTap;
+  void Function(BuildContext ctx)? onCancelBtnTap;
 
   /// Confirmation button text
   String? confirmBtnText;
