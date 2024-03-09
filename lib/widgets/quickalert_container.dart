@@ -103,11 +103,12 @@ class QuickAlertContainer extends StatelessWidget {
       child: Text(
         '$title',
         textAlign: options!.titleAlignment ?? TextAlign.center,
-        style: TextStyle(
-          color: options!.titleColor,
-        ).merge(
-          Theme.of(context).textTheme.headlineSmall,
-        ),
+        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: options?.titleColor,
+                ) ??
+            TextStyle(
+              color: options!.titleColor,
+            ),
       ),
     );
   }
