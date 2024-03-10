@@ -5,11 +5,11 @@ import 'package:quickalert/utils/images.dart';
 import 'package:quickalert/widgets/quickalert_buttons.dart';
 
 class QuickAlertContainer extends StatelessWidget {
-  final QuickAlertOptions? options;
+  final QuickAlertOptions options;
 
   const QuickAlertContainer({
     Key? key,
-    this.options,
+    required this.options,
   }) : super(key: key);
 
   @override
@@ -41,11 +41,11 @@ class QuickAlertContainer extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: options!.backgroundColor,
-        borderRadius: BorderRadius.circular(options!.borderRadius!),
+        color: options.backgroundColor,
+        borderRadius: BorderRadius.circular(options.borderRadius!),
       ),
       clipBehavior: Clip.antiAlias,
-      width: options!.width ?? MediaQuery.of(context).size.shortestSide,
+      width: options.width ?? MediaQuery.of(context).size.shortestSide,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [header, content],
@@ -55,7 +55,7 @@ class QuickAlertContainer extends StatelessWidget {
 
   Widget buildHeader(context) {
     String? anim = AppAnim.success;
-    switch (options!.type) {
+    switch (options.type) {
       case QuickAlertType.success:
         anim = AppAnim.success;
         break;
@@ -79,15 +79,15 @@ class QuickAlertContainer extends StatelessWidget {
         break;
     }
 
-    if (options!.customAsset != null) {
-      anim = options!.customAsset;
+    if (options.customAsset != null) {
+      anim = options.customAsset;
     }
     return Container(
       width: double.infinity,
       height: 150,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: options!.headerBackgroundColor,
+        color: options.headerBackgroundColor,
       ),
       child: Image.asset(
         anim ?? "",
@@ -97,56 +97,56 @@ class QuickAlertContainer extends StatelessWidget {
   }
 
   Widget buildTitle(context) {
-    final title = options!.title ?? whatTitle();
+    final title = options.title ?? whatTitle();
     return Visibility(
       visible: title != null,
       child: Text(
         '$title',
-        textAlign: options!.titleAlignment ?? TextAlign.center,
+        textAlign: options.titleAlignment ?? TextAlign.center,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color: options?.titleColor,
+                  color: options.titleColor,
                 ) ??
             TextStyle(
-              color: options!.titleColor,
+              color: options.titleColor,
             ),
       ),
     );
   }
 
   Widget buildText(context) {
-    if (options!.text == null && options!.type != QuickAlertType.loading) {
+    if (options.text == null && options.type != QuickAlertType.loading) {
       return Container();
     } else {
       String? text = '';
-      if (options!.type == QuickAlertType.loading) {
-        text = options!.text ?? 'Loading';
+      if (options.type == QuickAlertType.loading) {
+        text = options.text ?? 'Loading';
       } else {
-        text = options!.text;
+        text = options.text;
       }
       return Text(
         text ?? '',
-        textAlign: options!.textAlignment ?? TextAlign.center,
+        textAlign: options.textAlignment ?? TextAlign.center,
         style: TextStyle(
-          color: options!.textColor,
+          color: options.textColor,
         ),
       );
     }
   }
 
   Widget? buildWidget(context) {
-    if (options!.widget == null && options!.type != QuickAlertType.custom) {
+    if (options.widget == null && options.type != QuickAlertType.custom) {
       return Container();
     } else {
       Widget widget = Container();
-      if (options!.type == QuickAlertType.custom) {
-        widget = options!.widget ?? widget;
+      if (options.type == QuickAlertType.custom) {
+        widget = options.widget ?? widget;
       }
-      return options!.widget;
+      return options.widget;
     }
   }
 
   Widget buildButtons() {
-    if (options!.type == QuickAlertType.loading) {
+    if (options.type == QuickAlertType.loading) {
       return Container();
     } else {
       return QuickAlertButtons(
@@ -156,7 +156,7 @@ class QuickAlertContainer extends StatelessWidget {
   }
 
   String? whatTitle() {
-    switch (options!.type) {
+    switch (options.type) {
       case QuickAlertType.success:
         return 'Success';
       case QuickAlertType.error:
