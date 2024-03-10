@@ -146,13 +146,9 @@ class QuickAlertContainer extends StatelessWidget {
   }
 
   Widget buildButtons() {
-    if (options.type == QuickAlertType.loading) {
-      return Container();
-    } else {
-      return QuickAlertButtons(
-        options: options,
-      );
-    }
+    return QuickAlertButtons(
+      options: options,
+    );
   }
 
   String? whatTitle() {

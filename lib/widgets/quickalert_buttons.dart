@@ -18,7 +18,9 @@ class QuickAlertButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           cancelBtn(context),
-          okayBtn(context),
+          options.type != QuickAlertType.loading
+              ? okayBtn(context)
+              : const SizedBox.shrink(),
         ],
       ),
     );

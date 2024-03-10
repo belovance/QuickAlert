@@ -132,7 +132,15 @@ class QuickAlert {
 
     final child = WillPopScope(
       onWillPop: () async {
-        print("object-pop");
+        options.timer?.cancel();
+        if (options.type == QuickAlertType.loading &&
+            !disableBackBtn &&
+            showCancelBtn) {
+          if (options.onCancelBtnTap != null) {
+            options.onCancelBtnTap!();
+            return false;
+          }
+        }
         return !disableBackBtn;
       },
       child: AlertDialog(
