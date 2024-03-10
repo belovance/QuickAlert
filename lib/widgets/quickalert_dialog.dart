@@ -130,7 +130,7 @@ class QuickAlert {
       width: width,
     );
 
-    final child = WillPopScope(
+    Widget child = WillPopScope(
       onWillPop: () async {
         options.timer?.cancel();
         if (options.type == QuickAlertType.loading &&
@@ -154,18 +154,22 @@ class QuickAlert {
       ),
     );
 
-    void _handleKeyboardEvent(event) {
-      if (event is RawKeyUpEvent &&
-          event.logicalKey == LogicalKeyboardKey.enter) {
-        options.timer?.cancel();
-        options.onConfirmBtnTap != null
-            ? options.onConfirmBtnTap!()
-            : Navigator.pop(context);
-        RawKeyboard.instance.removeListener(_handleKeyboardEvent);
-      }
+    if (options.type != QuickAlertType.loading) {
+      child = RawKeyboardListener(
+        focusNode: FocusNode(),
+        autofocus: true,
+        onKey: (event) {
+          if (event is RawKeyUpEvent &&
+              event.logicalKey == LogicalKeyboardKey.enter) {
+            options.timer?.cancel();
+            options.onConfirmBtnTap != null
+                ? options.onConfirmBtnTap!()
+                : Navigator.pop(context);
+          }
+        },
+        child: child,
+      );
     }
-
-    RawKeyboard.instance.addListener(_handleKeyboardEvent);
 
     return showGeneralDialog(
       barrierColor: barrierColor ?? Colors.black.withOpacity(0.5),
