@@ -1,6 +1,6 @@
 name: quickalert
 description: With QuickAlert, instantly display animated alert dialogs such as success, error, warning, confirm, loading or even a custom dialog.
-version: 1.0.2
+version: 1.1.0
 homepage: https://quickalert.belovance.com
 repository: https://github.com/belovance/QuickAlert
 
