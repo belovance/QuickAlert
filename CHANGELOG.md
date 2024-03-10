@@ -1,3 +1,10 @@
+## 1.1.0
+
+**Bug Fixes & Enhancements**
+* Title Color not working [#25](https://github.com/belovance/QuickAlert/issues/25)
+* Add option to dismiss alert with keyboard "Enter/Cancel" pressed [#27](https://github.com/belovance/QuickAlert/issues/27)
+* Cancel button with QuickAlertType.loading [#31](https://github.com/belovance/QuickAlert/issues/31)
+
 ## 1.0.2
 
 * Addition of more options to provide more control over the dialog
