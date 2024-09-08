@@ -31,9 +31,12 @@ class QuickAlertContainer extends StatelessWidget {
           ),
           text,
           widget!,
-          const SizedBox(
-            height: 10.0,
-          ),
+          if (options.type == QuickAlertType.confirm ||
+              options.showCancelBtn! ||
+              options.showConfirmBtn!)
+            const SizedBox(
+              height: 10.0,
+            ),
           buttons
         ],
       ),

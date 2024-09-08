@@ -211,7 +211,7 @@ These are the options available in <code>QuickAlert</code> Class.
 | confirmBtnText | String | Text of confirm button | 'Okay' |                 |
 | onConfirmBtnTap| Function | Function that handle click of confirm button | () => Navigator.pop(context)|
 | confirmBtnColor| Color | Color of confirm Button | Colors.blue |
-| showCancelBtn | bool| Determines if cancel button is shown or not | false |
+| showCancelBtn | bool| Determines if cancel button is shown or not | false (always true when type set to confirm) |
 | showConfirmBtn | bool| Determines if confirm button is shown or not | true |
 | cancelBtnText| String | Text of cancel button| 'Cancel' |
 | onCancelBtnTap| Function| Function that handle click of cancel button|() => Navigator.pop(context) |
