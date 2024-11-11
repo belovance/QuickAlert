@@ -4,23 +4,131 @@ import 'package:flutter/widgets.dart';
 import 'package:quickalert/models/quickalert_animtype.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 
-/// Alert Options
-class QuickAlertOptions {
+class AlertHeaderOptions {
+  /// Header Widget
+  Widget? header;
+
+  /// Header Backgroung Color for dialog
+  Color? backgroundColor;
+
+  /// default height of the header
+  double? height;
+
+  AlertHeaderOptions({
+    this.header,
+    this.backgroundColor,
+  });
+}
+
+class AlertTitleOptions {
   /// Title of the dialog
   String? title;
 
+  /// TitleAlignment of the dialog
+  TextAlign? alignment;
+
+  /// Header Backgroung Color for dialog
+  Color? backgroundColor;
+
+  /// Header Backgroung Color for dialog
+  Color? color;
+
+  /// Color of title
+  TextStyle? style;
+
+  /// padding of the content
+  EdgeInsetsGeometry? padding;
+
+  AlertTitleOptions({
+    this.title,
+    this.alignment,
+    this.backgroundColor,
+    this.style,
+    this.color,
+    this.padding,
+  });
+}
+
+class AlertContentOptions {
   /// Text of the dialog
   String? text;
 
-  /// TitleAlignment of the dialog
-  TextAlign? titleAlignment;
-
   /// TextAlignment of the dialog
-  TextAlign? textAlignment;
+  TextAlign? alignment;
 
   /// Custom Widget of the dialog
-  Widget? widget;
+  Widget? content;
 
+  /// padding of the content
+  EdgeInsetsGeometry? padding;
+
+  /// Color of text
+  Color? color;
+
+  AlertContentOptions({
+    this.text,
+    this.alignment,
+    this.content,
+    this.padding,
+    this.color,
+  });
+}
+
+enum AlertButtonType {
+  confirm,
+  cancel,
+}
+
+class AlertButton {
+  AlertButtonType type;
+
+  VoidCallback? onTap;
+
+  String? text;
+
+  /// Color of title
+  TextStyle? style;
+
+  double? radius;
+
+  double? width;
+
+  double? height;
+
+  Widget? button;
+
+  Color? color;
+
+  Color? backgroundColor;
+
+  AlertButton({
+    required this.type,
+    this.onTap,
+    this.text,
+    this.style,
+    this.radius,
+    this.width,
+    this.height,
+    this.button,
+    this.color,
+    this.backgroundColor,
+  });
+}
+
+class AlertButtonOptions {
+  AlertButton? confirmButton;
+  AlertButton? cancelButton;
+  Axis? direction;
+
+  AlertButtonOptions({
+    this.direction,
+    this.confirmButton,
+    this.cancelButton,
+  });
+}
+
+/// Alert Options
+class QuickAlertOptions {
   /// Alert type [success, error, warning, confirm, info, loading, custom]
   QuickAlertType type;
 
@@ -30,50 +138,11 @@ class QuickAlertOptions {
   /// Barrier dismissible
   bool? barrierDismissible = false;
 
-  /// Triggered when confirm button is tapped
-  VoidCallback? onConfirmBtnTap;
-
-  /// Triggered when cancel button is tapped
-  VoidCallback? onCancelBtnTap;
-
-  /// Confirmation button text
-  String? confirmBtnText;
-
-  /// Cancel button text
-  String? cancelBtnText;
-
-  /// Color for confirm button
-  Color? confirmBtnColor;
-
-  /// TextStyle for confirm button
-  TextStyle? confirmBtnTextStyle;
-
-  /// TextStyle for cancel button
-  TextStyle? cancelBtnTextStyle;
-
   /// Backgroung Color for dialog
   Color? backgroundColor;
 
-  /// Header Backgroung Color for dialog
-  Color? headerBackgroundColor;
-
-  /// Color of title
-  Color? titleColor;
-
-  /// Color of text
-  Color? textColor;
-
-  /// Determines if cancel button is shown or not
-  bool? showCancelBtn;
-
-  /// Determines if confirm button is shown or not
-  bool? showConfirmBtn;
-
   /// Dialog Border Radius
   double? borderRadius;
-
-  /// Asset path of your Image file
-  String? customAsset;
 
   /// Width of the dialog
   double? width;
@@ -81,23 +150,16 @@ class QuickAlertOptions {
   /// timer for dismissing dialog (Ok button)
   Timer? timer;
 
+  AlertHeaderOptions? headerOptions;
+
+  AlertContentOptions? contentOptions;
+
+  AlertButtonOptions? buttonOptions;
+
+  AlertTitleOptions? alertTitleOptions;
+
   /// Alert Options
   QuickAlertOptions({
-    /// Title of the dialog
-    this.title,
-
-    /// Text of the dialog
-    this.text,
-
-    /// TitleAlignment of the dialog
-    this.titleAlignment,
-
-    /// TextAlignment of the dialog
-    this.textAlignment,
-
-    /// Custom Widget of the dialog
-    this.widget,
-
     /// Alert type [success, error, warning, confirm, info, loading, custom]
     required this.type,
 
@@ -107,55 +169,20 @@ class QuickAlertOptions {
     /// Barrier Dissmisable
     this.barrierDismissible,
 
-    /// Triggered when confirm button is tapped
-    this.onConfirmBtnTap,
-
-    /// Triggered when cancel button is tapped
-    this.onCancelBtnTap,
-
-    /// Confirmation button text
-    this.confirmBtnText,
-
-    /// Cancel button text
-    this.cancelBtnText,
-
-    /// Color for confirm button
-    this.confirmBtnColor,
-
-    /// TextStyle for confirm button
-    this.confirmBtnTextStyle,
-
-    /// TextStyle for cancel button
-    this.cancelBtnTextStyle,
-
     /// Backgroung Color for dialog
     this.backgroundColor,
 
-    /// Header Backgroung Color for dialog
-    this.headerBackgroundColor,
-
-    /// Color of title
-    this.titleColor,
-
-    /// Color of text
-    this.textColor,
-
-    /// Determines if cancel button is shown or not
-    this.showCancelBtn,
-
-    /// Determines if confirm button is shown or not
-    this.showConfirmBtn,
-
     /// Dialog Border Radius
     this.borderRadius,
-
-    /// Asset path of your Image file
-    this.customAsset,
 
     /// Width of the dialog
     this.width,
 
     /// timer for dismissing dialog (Ok button)
     this.timer,
+    this.headerOptions,
+    this.alertTitleOptions,
+    this.contentOptions,
+    this.buttonOptions,
   });
 }

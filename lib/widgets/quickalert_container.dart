@@ -21,11 +21,11 @@ class QuickAlertContainer extends StatelessWidget {
     final widget = buildWidget(context);
 
     final content = Container(
-      padding: const EdgeInsets.all(20.0),
+      padding: options.contentOptions?.padding ??
+          const EdgeInsets.fromLTRB(20.0, 10, 20, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          title,
           const SizedBox(
             height: 5.0,
           ),
@@ -34,7 +34,10 @@ class QuickAlertContainer extends StatelessWidget {
           const SizedBox(
             height: 10.0,
           ),
-          buttons
+          buttons,
+          const SizedBox(
+            height: 10.0,
+          ),
         ],
       ),
     );
@@ -48,12 +51,22 @@ class QuickAlertContainer extends StatelessWidget {
       width: options.width ?? MediaQuery.of(context).size.shortestSide,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [header, content],
+        children: [header, title, content],
       ),
     );
   }
 
   Widget buildHeader(context) {
+    final headerOption = options.headerOptions;
+    if (headerOption?.header != null) {
+      return ConstrainedBox(
+        constraints: const BoxConstraints(
+          minHeight: 10.0,
+        ),
+        child: headerOption?.header,
+      );
+    }
+
     String? anim = AppAnim.success;
     switch (options.type) {
       case QuickAlertType.success:
@@ -79,75 +92,88 @@ class QuickAlertContainer extends StatelessWidget {
         break;
     }
 
-    if (options.customAsset != null) {
-      anim = options.customAsset;
-    }
     return Container(
       width: double.infinity,
-      height: 150,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: options.headerBackgroundColor,
+        color: headerOption?.backgroundColor ?? Theme.of(context).primaryColor,
       ),
       child: Image.asset(
-        anim ?? "",
+        anim,
         fit: BoxFit.cover,
+        width: double.infinity,
+        height: headerOption?.height ?? 100,
       ),
     );
   }
 
   Widget buildTitle(context) {
-    final title = options.title ?? whatTitle();
+    final titleOption = options.alertTitleOptions;
+    if (titleOption?.title == null) {
+      return Container();
+    }
+    final title = titleOption?.title ?? whatTitle();
     return Visibility(
       visible: title != null,
-      child: Text(
-        '$title',
-        textAlign: options.titleAlignment ?? TextAlign.center,
-        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color: options.titleColor,
-                ) ??
-            TextStyle(
-              color: options.titleColor,
-            ),
+      child: Container(
+        padding:
+            titleOption?.padding ?? const EdgeInsets.symmetric(vertical: 10.0),
+        child: Text(
+          '$title',
+          textAlign: titleOption?.alignment ?? TextAlign.center,
+          style: titleOption?.style ?? TextStyle(color: titleOption?.color),
+        ),
       ),
     );
   }
 
   Widget buildText(context) {
-    if (options.text == null && options.type != QuickAlertType.loading) {
+    final contentOptions = options.contentOptions;
+    if (contentOptions?.text == null &&
+        options.type != QuickAlertType.loading) {
       return Container();
     } else {
       String? text = '';
       if (options.type == QuickAlertType.loading) {
-        text = options.text ?? 'Loading';
+        text = contentOptions?.text ?? 'Loading';
       } else {
-        text = options.text;
+        text = contentOptions?.text;
       }
       return Text(
         text ?? '',
-        textAlign: options.textAlignment ?? TextAlign.center,
+        textAlign: contentOptions?.alignment ?? TextAlign.center,
         style: TextStyle(
-          color: options.textColor,
+          color: contentOptions?.color,
         ),
       );
     }
   }
 
   Widget? buildWidget(context) {
-    if (options.widget == null && options.type != QuickAlertType.custom) {
+    final contentOptions = options.contentOptions;
+    if (contentOptions?.content == null &&
+        options.type != QuickAlertType.custom) {
       return Container();
     } else {
       Widget widget = Container();
       if (options.type == QuickAlertType.custom) {
-        widget = options.widget ?? widget;
+        widget = contentOptions?.content ?? widget;
       }
-      return options.widget;
+      return contentOptions?.content;
     }
   }
 
   Widget buildButtons() {
     return QuickAlertButtons(
-      options: options,
+      alertType: options.type,
+      timerEnd: () {
+        options.timer?.cancel();
+      },
+      options: options.buttonOptions ??
+          AlertButtonOptions(
+            cancelButton:
+                AlertButton(type: AlertButtonType.cancel, text: "Cancel"),
+          ),
     );
   }
 

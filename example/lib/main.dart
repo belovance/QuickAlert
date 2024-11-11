@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quickalert/models/quickalert_options.dart';
 import 'package:quickalert/quickalert.dart';
 
 void main() {
@@ -36,9 +37,10 @@ class _MyHomePageState extends State<MyHomePage> {
         QuickAlert.show(
           context: context,
           type: QuickAlertType.success,
-          text: 'Transaction Completed Successfully!',
+          contentOptions: AlertContentOptions(
+            text: 'Transaction Completed Successfully!',
+          ),
           autoCloseDuration: const Duration(seconds: 2),
-          showConfirmBtn: false,
         );
       },
       title: 'Success',
@@ -51,11 +53,13 @@ class _MyHomePageState extends State<MyHomePage> {
         QuickAlert.show(
           context: context,
           type: QuickAlertType.error,
-          title: 'Oops...',
-          text: 'Sorry, something went wrong',
+          titleOptions:
+              AlertTitleOptions(title: 'Oops...', color: Colors.white),
+          contentOptions: AlertContentOptions(
+            text: 'Sorry, something went wrong',
+            color: Colors.white,
+          ),
           backgroundColor: Colors.black,
-          titleColor: Colors.white,
-          textColor: Colors.white,
         );
       },
       title: 'Error',
@@ -68,7 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
         QuickAlert.show(
           context: context,
           type: QuickAlertType.warning,
-          text: 'You just broke protocol',
+          contentOptions: AlertContentOptions(
+            text: 'You just broke protocol',
+          ),
         );
       },
       title: 'Warning',
@@ -81,7 +87,9 @@ class _MyHomePageState extends State<MyHomePage> {
         QuickAlert.show(
           context: context,
           type: QuickAlertType.info,
-          text: 'Buy two, get one free',
+          contentOptions: AlertContentOptions(
+            text: 'Buy two, get one free',
+          ),
         );
       },
       title: 'Info',
@@ -92,26 +100,44 @@ class _MyHomePageState extends State<MyHomePage> {
     final confirmAlert = buildButton(
       onTap: () {
         QuickAlert.show(
-          onCancelBtnTap: () {
-            Navigator.pop(context);
-          },
           context: context,
           type: QuickAlertType.confirm,
-          text: 'Do you want to logout',
-          titleAlignment: TextAlign.right,
-          textAlignment: TextAlign.right,
-          confirmBtnText: 'Yes',
-          cancelBtnText: 'No',
-          confirmBtnColor: Colors.white,
-          backgroundColor: Colors.black,
-          headerBackgroundColor: Colors.grey,
-          confirmBtnTextStyle: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
+          contentOptions: AlertContentOptions(
+            text: 'Do you want to logout',
+            alignment: TextAlign.right,
+            color: Colors.white,
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           ),
+          titleOptions: AlertTitleOptions(
+              title: "title", alignment: TextAlign.right, color: Colors.white),
+          headerOptions: AlertHeaderOptions(
+            backgroundColor: Colors.grey,
+          ),
+          buttonOptions: AlertButtonOptions(
+            direction: Axis.horizontal,
+            confirmButton: AlertButton(
+              type: AlertButtonType.confirm,
+              text: "Yes",
+              height: 40,
+              width: 100,
+              color: Colors.white,
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+              backgroundColor: Colors.yellow,
+            ),
+            cancelButton: AlertButton(
+                height: 40,
+                width: 200,
+                type: AlertButtonType.cancel,
+                text: "No",
+                onTap: () {
+                  Navigator.pop(context);
+                }),
+          ),
+          backgroundColor: Colors.black,
           barrierColor: Colors.white,
-          titleColor: Colors.white,
-          textColor: Colors.white,
         );
       },
       title: 'Confirm',
@@ -124,8 +150,12 @@ class _MyHomePageState extends State<MyHomePage> {
         QuickAlert.show(
           context: context,
           type: QuickAlertType.loading,
-          title: 'Loading',
-          text: 'Fetching your data',
+          titleOptions: AlertTitleOptions(
+            title: 'Loading',
+          ),
+          contentOptions: AlertContentOptions(
+            text: 'Fetching your data',
+          ),
         );
       },
       title: 'Loading',
@@ -140,43 +170,172 @@ class _MyHomePageState extends State<MyHomePage> {
           context: context,
           type: QuickAlertType.custom,
           barrierDismissible: true,
-          confirmBtnText: 'Save',
-          customAsset: 'assets/custom.gif',
-          widget: TextFormField(
-            decoration: const InputDecoration(
-              alignLabelWithHint: true,
-              hintText: 'Enter Phone Number',
-              prefixIcon: Icon(
-                Icons.phone_outlined,
+          contentOptions: AlertContentOptions(
+            content: TextFormField(
+              decoration: const InputDecoration(
+                alignLabelWithHint: true,
+                hintText: 'Enter Phone Number',
+                prefixIcon: Icon(
+                  Icons.phone_outlined,
+                ),
               ),
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.phone,
+              onChanged: (value) => message = value,
             ),
-            textInputAction: TextInputAction.next,
-            keyboardType: TextInputType.phone,
-            onChanged: (value) => message = value,
           ),
-          onConfirmBtnTap: () async {
-            if (message.length < 5) {
-              await QuickAlert.show(
-                context: context,
-                type: QuickAlertType.error,
-                text: 'Please input something',
-              );
-              return;
-            }
-            Navigator.pop(context);
-            if (mounted) {
-              QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: "Phone number '$message' has been saved!.",
-              );
-            }
-          },
+          headerOptions: AlertHeaderOptions(
+            header: Container(
+              decoration: const BoxDecoration(color: Colors.white), // 设置装饰
+              width: double.infinity,
+              height: 100,
+              clipBehavior: Clip.antiAlias,
+              child: Image.asset('assets/custom.gif',
+                  fit: BoxFit.cover, width: double.infinity),
+            ),
+          ),
+          buttonOptions: AlertButtonOptions(
+            confirmButton: AlertButton(
+              text: 'Save',
+              type: AlertButtonType.confirm,
+              onTap: () async {
+                if (message.length < 5) {
+                  await QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.error,
+                    contentOptions: AlertContentOptions(
+                      text: 'Please input something',
+                    ),
+                  );
+                  return;
+                }
+                Navigator.pop(context);
+                if (mounted) {
+                  QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.success,
+                    contentOptions: AlertContentOptions(
+                      text: "Phone number '$message' has been saved!.",
+                    ),
+                  );
+                }
+              },
+            ),
+          ),
         );
       },
       title: 'Custom',
       text: 'Custom Widget Alert',
       leadingImage: 'assets/custom.gif',
+    );
+
+    /**
+     * set a custom header widget
+     * set confirm button radius
+     */
+    const borderRadius = 20.0;
+    final customHeaderConfirm = buildButton(
+      onTap: () {
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.confirm,
+          headerOptions: AlertHeaderOptions(
+            backgroundColor: Colors.grey,
+            header: Container(
+              height: 100,
+              width: double.infinity,
+              // margin: const EdgeInsets.symmetric(horizontal: 2),
+              decoration: const BoxDecoration(
+                color: Colors.yellow,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(borderRadius), // 左上角圆角
+                  topRight: Radius.circular(borderRadius), // 右上角圆角
+                ),
+              ),
+              child: TextButton(
+                onPressed: () {},
+                child: const Text('this is a custom header ',
+                    style: TextStyle(color: Colors.black, fontSize: 18)),
+              ),
+            ),
+          ),
+          titleOptions: AlertTitleOptions(
+              alignment: TextAlign.right, color: Colors.white),
+          contentOptions: AlertContentOptions(
+            text: 'Do you want to logout',
+            alignment: TextAlign.center,
+            color: Colors.white,
+          ),
+          buttonOptions: AlertButtonOptions(
+            direction: Axis.horizontal,
+            confirmButton: AlertButton(
+              type: AlertButtonType.confirm,
+              text: "Yes",
+              color: Colors.white,
+              radius: 6,
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            cancelButton: AlertButton(
+              type: AlertButtonType.cancel,
+              text: "No",
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+          backgroundColor: Colors.black,
+          borderRadius: borderRadius,
+          barrierColor: Colors.white,
+        );
+      },
+      title: 'Custom header',
+      text: 'Do you want to logout',
+      leadingImage: 'assets/confirm.gif',
+    );
+
+    final confirmButtonsVertical = buildButton(
+      onTap: () {
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.confirm,
+          contentOptions: AlertContentOptions(
+            text: 'Do you want to logout',
+            alignment: TextAlign.right,
+            color: Colors.white,
+          ),
+          titleOptions: AlertTitleOptions(
+              alignment: TextAlign.right, color: Colors.white),
+          headerOptions: AlertHeaderOptions(
+            backgroundColor: Colors.grey,
+          ),
+          buttonOptions: AlertButtonOptions(
+            direction: Axis.vertical,
+            confirmButton: AlertButton(
+              type: AlertButtonType.confirm,
+              text: "Yes",
+              color: Colors.white,
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            cancelButton: AlertButton(
+                type: AlertButtonType.cancel,
+                text: "No",
+                onTap: () {
+                  Navigator.pop(context);
+                }),
+          ),
+          backgroundColor: Colors.black,
+          barrierColor: Colors.white,
+        );
+      },
+      title: 'Confirm buttons vertical',
+      text: 'Do you want to logout',
+      leadingImage: 'assets/confirm.gif',
     );
 
     return Scaffold(
@@ -206,6 +365,10 @@ class _MyHomePageState extends State<MyHomePage> {
           loadingAlert,
           const SizedBox(height: 20),
           customAlert,
+          const SizedBox(height: 20),
+          customHeaderConfirm,
+          const SizedBox(height: 20),
+          confirmButtonsVertical,
           const SizedBox(height: 20),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quickalert/models/quickalert_animtype.dart';
@@ -14,80 +15,41 @@ class QuickAlert {
     /// BuildContext
     required BuildContext context,
 
-    /// Title of the dialog
-    String? title,
-
-    /// Text of the dialog
-    String? text,
-
-    /// TitleAlignment of the dialog
-    TextAlign? titleAlignment,
-
-    /// TextAlignment of the dialog
-    TextAlign? textAlignment,
-
-    /// Custom Widget of the dialog
-    Widget? widget,
-
     /// Alert type [success, error, warning, confirm, info, loading, custom]
     required QuickAlertType type,
+
+    /// content options
+    required AlertContentOptions contentOptions,
 
     /// Animation type  [scale, rotate, slideInDown, slideInUp, slideInLeft, slideInRight]
     QuickAlertAnimType animType = QuickAlertAnimType.scale,
 
-    /// Barrier Dismissible
+    /// Barrier dismissible
     bool barrierDismissible = true,
-
-    /// Triggered when confirm button is tapped
-    VoidCallback? onConfirmBtnTap,
-
-    /// Triggered when cancel button is tapped
-    VoidCallback? onCancelBtnTap,
-
-    /// Confirmation button text
-    String confirmBtnText = 'Okay',
-
-    /// Cancel button text
-    String cancelBtnText = 'Cancel',
-
-    /// Color for confirm button
-    Color confirmBtnColor = Colors.blue,
-
-    /// TextStyle for confirm button
-    TextStyle? confirmBtnTextStyle,
-
-    /// TextStyle for cancel button
-    TextStyle? cancelBtnTextStyle,
-
-    /// Background Color for dialog
-    Color backgroundColor = Colors.white,
-
-    /// Header Background Color for dialog
-    Color headerBackgroundColor = Colors.white,
-
-    /// Color of title
-    Color titleColor = Colors.black,
-
-    /// Color of text
-    Color textColor = Colors.black,
 
     /// Barrier Color of dialog
     Color? barrierColor,
 
-    /// Determines if cancel button is shown or not
-    bool showCancelBtn = false,
-
-    /// Determines if confirm button is shown or not
-    bool showConfirmBtn = true,
-
-    /// Dialog Border Radius
-    double borderRadius = 15.0,
-
-    /// Asset path of your Image file
-    String? customAsset,
-
     /// Width of the dialog
     double? width,
+
+    /// timer for dismissing dialog (Ok button)
+    Timer? timer,
+
+    /// header options
+    AlertHeaderOptions? headerOptions,
+
+    /// title options
+    AlertTitleOptions? titleOptions,
+
+    /// button options
+    AlertButtonOptions? buttonOptions,
+
+    /// Background Color for dialog
+    Color backgroundColor = Colors.white,
+
+    /// Dialog Border Radius
+    double borderRadius = 10.0,
 
     /// Determines how long the dialog stays open for before closing, [default] is null. When it is null, it won't auto close
     Duration? autoCloseDuration,
@@ -104,44 +66,33 @@ class QuickAlert {
 
     final options = QuickAlertOptions(
       timer: timer,
-      title: title,
-      text: text,
-      titleAlignment: titleAlignment,
-      textAlignment: textAlignment,
-      widget: widget,
+      headerOptions: headerOptions ?? AlertHeaderOptions(),
+      alertTitleOptions: titleOptions ?? AlertTitleOptions(),
+      contentOptions: contentOptions,
+      buttonOptions: buttonOptions ??
+          AlertButtonOptions(
+            cancelButton: AlertButton(
+              type: AlertButtonType.cancel,
+              text: "Cancel",
+              color: Colors.grey,
+            ),
+          ),
       type: type,
       animType: animType,
       barrierDismissible: barrierDismissible,
-      onConfirmBtnTap: onConfirmBtnTap,
-      onCancelBtnTap: onCancelBtnTap,
-      confirmBtnText: confirmBtnText,
-      cancelBtnText: cancelBtnText,
-      confirmBtnColor: confirmBtnColor,
-      confirmBtnTextStyle: confirmBtnTextStyle,
-      cancelBtnTextStyle: cancelBtnTextStyle,
       backgroundColor: backgroundColor,
-      headerBackgroundColor: headerBackgroundColor,
-      titleColor: titleColor,
-      textColor: textColor,
-      showCancelBtn: showCancelBtn,
-      showConfirmBtn: showConfirmBtn,
       borderRadius: borderRadius,
-      customAsset: customAsset,
       width: width,
     );
 
-    Widget child = WillPopScope(
-      onWillPop: () async {
+    Widget child = PopScope(
+      onPopInvokedWithResult: (didPop, result) async {
         options.timer?.cancel();
-        if (options.type == QuickAlertType.loading &&
-            !disableBackBtn &&
-            showCancelBtn) {
-          if (options.onCancelBtnTap != null) {
-            options.onCancelBtnTap!();
-            return false;
+        if (options.type == QuickAlertType.loading && !disableBackBtn) {
+          if (options.buttonOptions?.cancelButton?.onTap != null) {
+            options.buttonOptions?.cancelButton?.onTap!();
           }
         }
-        return !disableBackBtn;
       },
       child: AlertDialog(
         contentPadding: EdgeInsets.zero,
@@ -155,16 +106,19 @@ class QuickAlert {
     );
 
     if (options.type != QuickAlertType.loading) {
-      child = RawKeyboardListener(
+      child = KeyboardListener(
         focusNode: FocusNode(),
         autofocus: true,
-        onKey: (event) {
-          if (event is RawKeyUpEvent &&
+        onKeyEvent: (event) {
+          if (event is KeyUpEvent &&
               event.logicalKey == LogicalKeyboardKey.enter) {
             options.timer?.cancel();
-            options.onConfirmBtnTap != null
-                ? options.onConfirmBtnTap!()
-                : Navigator.pop(context);
+
+            if (options.buttonOptions?.confirmButton?.onTap != null) {
+              options.buttonOptions?.confirmButton?.onTap!();
+            } else {
+              Navigator.pop(context);
+            }
           }
         },
         child: child,

@@ -3,122 +3,121 @@ import 'package:quickalert/models/quickalert_options.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 
 class QuickAlertButtons extends StatelessWidget {
-  final QuickAlertOptions options;
+  final AlertButtonOptions options;
+
+  final QuickAlertType alertType;
+
+  final VoidCallback timerEnd;
 
   const QuickAlertButtons({
     Key? key,
     required this.options,
+    required this.alertType,
+    required this.timerEnd,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final buttons = [
+      alertType != QuickAlertType.loading ? okayBtn(context) : const SizedBox(),
+      cancelBtn(context),
+    ];
+
+    if (options.direction == Axis.vertical) {
+      return Container(
+        margin: const EdgeInsets.only(top: 10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: buttons,
+        ),
+      );
+    }
+
+    // MainAxisAlignment.spaceEvenly在只有一个元素时不居中显示
+    final showConfirmBtn =
+        alertType != QuickAlertType.loading && options.confirmButton != null;
+    final showCancelBtn = options.cancelButton != null;
+
     return Container(
       margin: const EdgeInsets.only(top: 10.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          cancelBtn(context),
-          options.type != QuickAlertType.loading
-              ? okayBtn(context)
-              : const SizedBox.shrink(),
-        ],
+        mainAxisAlignment: showConfirmBtn && showCancelBtn == true
+            ? MainAxisAlignment.spaceEvenly
+            : MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: buttons,
       ),
     );
   }
 
   Widget okayBtn(context) {
-    if (!options.showConfirmBtn!) {
+    if (options.confirmButton == null) {
       return const SizedBox();
     }
-    final showCancelBtn =
-        options.type == QuickAlertType.confirm ? true : options.showCancelBtn!;
 
-    final okayBtn = buildButton(
-        context: context,
-        isOkayBtn: true,
-        text: options.confirmBtnText!,
-        onTap: () {
-          options.timer?.cancel();
-          options.onConfirmBtnTap != null
-              ? options.onConfirmBtnTap!()
-              : Navigator.pop(context);
-        });
-
-    if (showCancelBtn) {
-      return Expanded(child: okayBtn);
-    } else {
-      return okayBtn;
-    }
-  }
-
-  Widget cancelBtn(context) {
-    final showCancelBtn =
-        options.type == QuickAlertType.confirm ? true : options.showCancelBtn!;
-
-    final cancelBtn = buildButton(
-        context: context,
-        isOkayBtn: false,
-        text: options.cancelBtnText!,
-        onTap: () {
-          options.timer?.cancel();
-          options.onCancelBtnTap != null
-              ? options.onCancelBtnTap!()
-              : Navigator.pop(context);
-        });
-
-    if (showCancelBtn) {
-      return Expanded(child: cancelBtn);
-    } else {
-      return const SizedBox();
-    }
-  }
-
-  Widget buildButton({
-    BuildContext? context,
-    required bool isOkayBtn,
-    required String text,
-    VoidCallback? onTap,
-  }) {
-    final btnText = Text(
-      text,
-      style: defaultTextStyle(isOkayBtn),
-    );
-
-    final okayBtn = MaterialButton(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      color: options.confirmBtnColor ?? Theme.of(context!).primaryColor,
-      onPressed: onTap,
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(7.5),
-          child: btnText,
+    final confirmButton = options.confirmButton!;
+    return Container(
+      height: confirmButton.height,
+      width: confirmButton.width,
+      decoration: BoxDecoration(
+          color:
+              confirmButton.backgroundColor ?? Theme.of(context!).primaryColor,
+          borderRadius: BorderRadius.circular(confirmButton.radius ?? 15)),
+      child: TextButton(
+        onPressed: () {
+          timerEnd();
+          if (confirmButton.onTap != null) {
+            confirmButton.onTap!();
+          } else {
+            Navigator.pop(context);
+          }
+        },
+        child: Text(
+          options.confirmButton?.text ?? '',
+          style: defaultTextStyle(confirmButton),
         ),
       ),
     );
-
-    final cancelBtn = GestureDetector(
-      onTap: onTap,
-      child: Center(
-        child: btnText,
-      ),
-    );
-
-    return isOkayBtn ? okayBtn : cancelBtn;
   }
 
-  TextStyle defaultTextStyle(bool isOkayBtn) {
-    final textStyle = TextStyle(
-      color: isOkayBtn ? Colors.white : Colors.grey,
+  Widget cancelBtn(context) {
+    if (options.cancelButton == null) {
+      //返回默认的按钮
+      return const SizedBox();
+    }
+
+    final cancelButton = options.cancelButton!;
+    return Container(
+      height: cancelButton.height,
+      width: cancelButton.width,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(cancelButton.radius ?? 15)),
+      child: TextButton(
+        onPressed: () {
+          timerEnd();
+          if (cancelButton.onTap != null) {
+            cancelButton.onTap!();
+          } else {
+            Navigator.pop(context);
+          }
+        },
+        child: Text(
+          cancelButton.text ?? '',
+          style: defaultTextStyle(cancelButton),
+        ),
+      ),
+    );
+  }
+
+  TextStyle defaultTextStyle(AlertButton alertButton) {
+    if (alertButton.style != null) {
+      return alertButton.style!;
+    }
+    return TextStyle(
+      color: alertButton.backgroundColor ?? Colors.grey,
       fontWeight: FontWeight.w600,
       fontSize: 18.0,
     );
-
-    if (isOkayBtn) {
-      return options.confirmBtnTextStyle ?? textStyle;
-    } else {
-      return options.cancelBtnTextStyle ?? textStyle;
-    }
   }
 }
