@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quickalert/models/quickalert_animtype.dart';
@@ -58,6 +59,9 @@ class QuickAlert {
 
     /// TextStyle for cancel button
     TextStyle? cancelBtnTextStyle,
+
+    /// ButtonStyle for cancel button
+    ButtonStyle? cancelButtonStyle,
 
     /// Background Color for dialog
     Color backgroundColor = Colors.white,
@@ -119,6 +123,7 @@ class QuickAlert {
       confirmBtnColor: confirmBtnColor,
       confirmBtnTextStyle: confirmBtnTextStyle,
       cancelBtnTextStyle: cancelBtnTextStyle,
+      cancelButtonStyle: cancelButtonStyle,
       backgroundColor: backgroundColor,
       headerBackgroundColor: headerBackgroundColor,
       titleColor: titleColor,

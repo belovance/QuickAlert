@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_animtype.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 
@@ -66,6 +66,9 @@ class QuickAlertOptions {
   /// Determines if cancel button is shown or not
   bool? showCancelBtn;
 
+  /// ButtonStyle for cancel button
+  ButtonStyle? cancelButtonStyle;
+
   /// Determines if confirm button is shown or not
   bool? showConfirmBtn;
 
@@ -112,6 +115,9 @@ class QuickAlertOptions {
 
     /// Triggered when cancel button is tapped
     this.onCancelBtnTap,
+
+    /// ButtonStyle for cancel button
+    this.cancelButtonStyle,
 
     /// Confirmation button text
     this.confirmBtnText,

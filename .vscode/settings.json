@@ -2,5 +2,21 @@
   "cSpell.words": [
     "animtype",
     "quickalert"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#fce61e",
+    "titleBar.activeForeground": "#000000",
+    "titleBar.inactiveBackground": "#fce61e",
+    "titleBar.inactiveForeground": "#000000",
+    "titleBar.border": "#fce61e",
+    "activityBar.background": "#fce61e",
+    "activityBar.foreground": "#000000",
+    "statusBar.background": "#fce61e",
+    "statusBar.foreground": "#000000",
+    "statusBar.debuggingBackground": "#fce61e",
+    "statusBar.debuggingForeground": "#000000",
+    "tab.activeBorder": "#fce61e",
+    "iLoveWorkSpaceColors": true,
+    "iLoveWorkSpaceRandom": false
+  }
 }
