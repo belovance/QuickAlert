@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:quickalert/models/quickalert_options.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 

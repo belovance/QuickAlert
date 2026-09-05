@@ -75,6 +75,9 @@ class QuickAlertOptions {
   /// Asset path of your Image file
   String? customAsset;
 
+  /// Custom Height of the dialog
+  double? headerHeight;
+
   /// Width of the dialog
   double? width;
 
@@ -151,6 +154,9 @@ class QuickAlertOptions {
 
     /// Asset path of your Image file
     this.customAsset,
+
+    /// Height of the dialog header (top image)
+    this.headerHeight,
 
     /// Width of the dialog
     this.width,

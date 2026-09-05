@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:quickalert/models/quickalert_animtype.dart';
 import 'package:quickalert/models/quickalert_options.dart';
@@ -130,18 +130,17 @@ class QuickAlert {
       width: width,
     );
 
-    Widget child = WillPopScope(
-      onWillPop: () async {
+    Widget child = PopScope(
+      canPop: !disableBackBtn,
+      onPopInvoked: (didPop)  async {
         options.timer?.cancel();
         if (options.type == QuickAlertType.loading &&
             !disableBackBtn &&
             showCancelBtn) {
           if (options.onCancelBtnTap != null) {
             options.onCancelBtnTap!();
-            return false;
           }
         }
-        return !disableBackBtn;
       },
       child: AlertDialog(
         contentPadding: EdgeInsets.zero,
@@ -155,11 +154,11 @@ class QuickAlert {
     );
 
     if (options.type != QuickAlertType.loading) {
-      child = RawKeyboardListener(
+      child = KeyboardListener(
         focusNode: FocusNode(),
         autofocus: true,
-        onKey: (event) {
-          if (event is RawKeyUpEvent &&
+        onKeyEvent: (event) {
+          if (event is KeyUpEvent &&
               event.logicalKey == LogicalKeyboardKey.enter) {
             options.timer?.cancel();
             options.onConfirmBtnTap != null
