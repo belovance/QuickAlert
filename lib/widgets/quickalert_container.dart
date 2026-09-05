@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:quickalert/models/quickalert_options.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/utils/images.dart';
@@ -7,10 +7,8 @@ import 'package:quickalert/widgets/quickalert_buttons.dart';
 class QuickAlertContainer extends StatelessWidget {
   final QuickAlertOptions options;
 
-  const QuickAlertContainer({
-    Key? key,
-    required this.options,
-  }) : super(key: key);
+  const QuickAlertContainer({Key? key, required this.options})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +24,11 @@ class QuickAlertContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           title,
-          const SizedBox(
-            height: 5.0,
-          ),
+          const SizedBox(height: 5.0),
           text,
           widget!,
-          const SizedBox(
-            height: 10.0,
-          ),
-          buttons
+          const SizedBox(height: 10.0),
+          buttons,
         ],
       ),
     );
@@ -46,9 +40,12 @@ class QuickAlertContainer extends StatelessWidget {
       ),
       clipBehavior: Clip.antiAlias,
       width: options.width ?? MediaQuery.of(context).size.shortestSide,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [header, content],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [header, content],
+        ),
       ),
     );
   }
@@ -84,15 +81,10 @@ class QuickAlertContainer extends StatelessWidget {
     }
     return Container(
       width: double.infinity,
-      height: 150,
+      height: options.headerHeight ?? 150,
       clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: options.headerBackgroundColor,
-      ),
-      child: Image.asset(
-        anim ?? "",
-        fit: BoxFit.cover,
-      ),
+      decoration: BoxDecoration(color: options.headerBackgroundColor),
+      child: Image.asset(anim ?? "", fit: BoxFit.cover),
     );
   }
 
@@ -103,12 +95,10 @@ class QuickAlertContainer extends StatelessWidget {
       child: Text(
         '$title',
         textAlign: options.titleAlignment ?? TextAlign.center,
-        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color: options.titleColor,
-                ) ??
-            TextStyle(
-              color: options.titleColor,
-            ),
+        style:
+            Theme.of(context).textTheme.headlineSmall
+                ?.copyWith(color: options.titleColor) ??
+            TextStyle(color: options.titleColor),
       ),
     );
   }
@@ -126,9 +116,7 @@ class QuickAlertContainer extends StatelessWidget {
       return Text(
         text ?? '',
         textAlign: options.textAlignment ?? TextAlign.center,
-        style: TextStyle(
-          color: options.textColor,
-        ),
+        style: TextStyle(color: options.textColor),
       );
     }
   }
@@ -146,9 +134,7 @@ class QuickAlertContainer extends StatelessWidget {
   }
 
   Widget buildButtons() {
-    return QuickAlertButtons(
-      options: options,
-    );
+    return QuickAlertButtons(options: options);
   }
 
   String? whatTitle() {
