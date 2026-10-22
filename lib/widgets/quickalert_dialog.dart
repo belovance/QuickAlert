@@ -166,8 +166,37 @@ class QuickAlert {
                 ? options.onConfirmBtnTap!()
                 : Navigator.pop(context);
           }
+          if (event is RawKeyUpEvent &&
+              options.type == QuickAlertType.confirm &&
+              (event.logicalKey == LogicalKeyboardKey.escape ||
+                  event.logicalKey == LogicalKeyboardKey.delete ||
+                  event.logicalKey == LogicalKeyboardKey.backspace)) {
+            options.timer?.cancel();
+            options.onCancelBtnTap != null
+                ? options.onCancelBtnTap!()
+                : Navigator.pop(context);
+          }
         },
         child: child,
+      );
+    }
+
+    if (options.type == QuickAlertType.confirm) {
+      // tap fuori dal dialog = annulla
+      child = Stack(
+        fit: StackFit.expand,
+        children: [
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              options.timer?.cancel();
+              options.onCancelBtnTap != null
+                  ? options.onCancelBtnTap!()
+                  : Navigator.pop(context);
+            },
+          ),
+          child,
+        ],
       );
     }
 
@@ -198,8 +227,11 @@ class QuickAlert {
         }
       },
       transitionDuration: const Duration(milliseconds: 200),
-      barrierDismissible:
-          autoCloseDuration != null ? false : barrierDismissible,
+      // i confirm si chiudono solo da pulsanti/tastiera (Esc = annulla)
+      barrierDismissible: autoCloseDuration != null ||
+              type == QuickAlertType.confirm
+          ? false
+          : barrierDismissible,
       barrierLabel: '',
       context: context,
       pageBuilder: (context, _, __) => Container(),
